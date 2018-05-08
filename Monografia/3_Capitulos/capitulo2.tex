@@ -1,0 +1,69 @@
+
+\chapter[Aprendizado de Máquina]{Aprendizado de Máquina} \label{cap:cap2}
+O aprendizado automatizado, comumente chamado de \textit{Machine Learning}(ML) é o campo de estudo que objetifica a elaboração de algoritmos que aprendem de acordo com as entradas fornecidas ao mesmo e, dessa forma, preocupa-se com a elaboração de programas e algoritmos capazes de se aprimorar numa tarefa, com base em sua experiência prévia.\cite{Mitchell,Shalev-Shwartz:2014:UML:2621980, Barber:2012:BRM:2207809}. 
+
+É importante notar a diferença entre ML e outras áreas relacionadas a resolução de problemas cognitivos que usam da memorização e análise de padrões, uma vez que este é o ponto que justifica o crescimento exponencial de técnicas de aprendizado de máquina ao longo dos anos. Para exemplificar, um sistema de detecção de \textit{spam} de mensagens de texto pode permitir que o usuário crie filtros que identifiquem mensagens indesejadas, como por exemplo o uso de expressões regulares. No entanto, sistemas mal intencionados podem criar mensagens levemente diferentes que irão passar impunes pelos filtros pré-estabelecidos. Este é um caso extremamente simples no qual um algoritmo de aprendizado de máquina iria obter um desempenho maior, uma vez que, após "aprender" a forma e o modelo de uma mensagem \textit{spam}, ele possivelmente irá identificar uma mensagem negativa mesmo que nunca tenha "visto" a mesma antes. \cite{Mitchell,Shalev-Shwartz:2014:UML:2621980}
+
+\section{Contextualização e Definição}
+Num estudo publicado em 1959 por Arthur Samuel \cite{FirstML} o cientista cunhou o termo \textit{Machine Learning} como o campo de estudo que concede ao computador a habilidade de aprender uma tarefa sem ter sido explicitamente programado para isso. Numa definição mais formal e recente, em 1998 o cientista Tom Mitchell em sua obra intitulada \textit{Machine Learning} definiu aprendizado de máquina com o seguinte postulado:
+\begin{quote}
+"Um programa de computador aprende com uma experiência E sobre uma tarefa T e uma medida de performance P se sua performance em T, medida por P, aumentar devido a experiência E."
+\end{quote} \par
+Por exemplo, um programa que aprende a recomendar filmes ou músicas para um usuário pode melhorar sua performance medida pelo número de recomendações que o usuário aprovou através da experiência de \textit{feedbacks} por parte do usuário. Neste tipo de problema, é necessário perceber a presença de três atributos: a classe da tarefa, a medida de performance e a fonte de experiência.\cite{Mitchell} \par
+
+No problema exemplificado, podem ser definidos os três atributos: \par
+\begin{itemize}
+    \item Tarefa T: recomendar filmes ou músicas
+    \item Medida de performance: \textit{feedbacks} do usuário, porcentagem de recomendações aprovadas
+    \item Experiência: Receber a aprovação ou reprovação do usuário sobre uma recomendação.
+\end{itemize}
+
+Identificado estes atributos, a composição final de um problema de aprendizado de máquina se dá por especificar as formas de representação e obtenção do conhecimento. \par
+
+Além da definição, é importante notar trabalhos que definiram o estado da arte do aprendizado de máquina e campos relacionados. Programas foram desenvolvidos para aprender a reconhecer palavras proferidas por humanos \cite{DBLP:journals/tsp/WaibelHHSL89}, detectar uso fraudulento de cartões de crédito e até mesmo alcançar níveis mundiais de desempenho em jogos como Go e Gamão.\cite{Mitchell}. Além disso, sistemas de aprendizado de máquina tem sido usados para diversas aplicações modernas, desde identificação de números de placas a diagnóstico de pacientes com tumores. Uma das maiores empresas do ramo de entretenimento, a Netflix, faz uso de uma coleção de algoritmos de aprendizado de máquina para criar recomendações personalizadas para cada um de seus usuários, automatizando o processo de escolha de filmes e programas e aumentando significantemente a adesão e satisfação de seus usuários\cite{Gomez-Uribe:2015:NRS:2869770.2843948}.\par
+
+\section{Aprendizagem Bayesiana}
+
+A escolha da fundamentação do aprendizado Bayesiano - e não de outras formas de aprendizado - se dá pelo fato de que esta metodologia se destaca em outros trabalhos da àrea de estudo \cite{LiuSentAnaSubject, DL4SA, LiuBing, Mitchell}. \par
+
+O raciocínio Bayesiano fornece uma abordagem probabilística para a inferência e é baseado na premissa de que os objetos de aprendizado são governados por alguma distribuição probabilística e que decisões podem ser tomada de forma ótima racionalizando tais probabilidades com os dados observados\cite{Mitchell, Barber:2012:BRM:2207809}.\par
+
+Os seguintes atributos são definidos num sistema de aprendizagem Bayesiano\cite{Mitchell}: \par
+\begin{itemize}
+    \item Cada amostra pode reduzir ou aumentar a probabilidade de que uma hipótese está correta. 
+    \item Conhecimento prévio pode ser combinado com dados observados para determinar a probabilidade final de uma hipótese
+    \item Novas instâncias podem ser classificadas ponderando as probabilidades de múltiplas hipóteses
+\end{itemize}
+O Teorema de Bayes é a pedra angular da aprendizagem Bayesiana pois elucida uma forma de calcular a probabilidade posterior $P(h|D)$ a partir da probabilidade $P(h)$ em conjunto com $P(D)$ e $P(D|h)$\cite{Mitchell}. \par
+
+É necessário uma familiaridade com conceitos básicos de probabilidade para entender a abordagem proposta pelo aprendizado baseado no Teorema de Bayes. Em teoria probabilística, o espaço amostral é o conjunto de resultados possíveis de um experimento aleatório, dentro deste conjunto de resultados, subconjuntos podem ser definidos como eventos. Dessa forma, valores de probabilidade podem ser associados a taís eventos:
+\begin{equation}
+    P(A) = \frac{A_n}{n}
+\end{equation}
+onde \textit{A} é o evento em questão, $A_n$ é a quantidade de elementos contidos no evento \textit{A} e, por fim, \textit{n} é o espaço amostral. Também é definido a probabilidade de um evento \textit{A} acontecer condicionado a outro evento \textit{B}:
+\begin{equation}
+    P(A|B) = \frac{P(A \cap B)}{P(B)} 
+    \label{eq:2}
+\end{equation}
+De forma equivalente, é fácil notar que
+\begin{equation}
+    P(B|A) = \frac{P(A \cap B)}{P(A)}
+    \label{eq:3}
+\end{equation}
+Dessa forma, igualando as equações \ref{eq:2} e \ref{eq:3}:
+\begin{equation}
+    P(B)P(A|B) = P(A)P(B|A) \to P(A|B) = \frac{P(A)P(B|A)}{P(B)}
+    \label{eq:bayes}
+\end{equation}
+Substituindo os eventos A e B por hipótese e conjunto de dados na equação \ref{eq:bayes} - variáveis que concernem ao aprendizado de máquina - podemos escrever o teorema de Bayes usado no método de aprendizagem Bayesiana como \cite{Shalev-Shwartz:2014:UML:2621980} \par
+\begin{equation}
+    P(h|D) = \frac{P(D|h)P(h)}{P(D)}
+\end{equation}
+
+Considerando a aplicação do teorema ao aprendizado de máquina, $P(h)$ denota a probabilidade inicial da hipótese \textit{h} ser verdadeira antes de serem efetuadas as observações sobre o conjunto de dados, também sendo chamada de probabilidade à priori (\textit{prior probability)}. De maneira análoga, $P(D)$ representa a probabilidade inicial do dado de treino \textit{D} ser observado, ou seja, a probabilidade de \textit{D} sem conhecimento sobre qual hipótese é verdadeira. Por fim, a notação $P(D|h)$ denota a probabilidade de observar um dado \textit{D} num cenário em que a hipótese \textit{h} seja verdadeira. \par
+
+
+Dessa forma, em ML o foco de interesse está na probabilidade $P(h|D)$, isto é, a probabilidade da hipótese \textit{h} ser verdadeira, dado observação dos dados \textit{D}. Também chamado de probabilidade posterior, reflete a influência dos dados \textit{D} na distribuição de hipóteses, ao contrário de $P(h)$, que é independente de \textit{D}.\cite{Mitchell,Shalev-Shwartz:2014:UML:2621980}\par
+
+\section{\textit{Support Vector Machines}}
+\label{sec:sec1}
